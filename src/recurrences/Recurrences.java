@@ -114,7 +114,6 @@ public class Recurrences {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter( System.out ));
 	Recurrences recurrencias = new Recurrences();
      
