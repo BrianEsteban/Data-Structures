@@ -335,7 +335,7 @@ public class Sorts {
         sorts.printArray(a);
         
         totalSum+= (System.currentTimeMillis()-startTime);
-        System.out.println("Tiempo que demora bubleSort: " + totalSum);
+        System.out.println("Tiempo que tarda bubleSort: " + totalSum);
         
         long totalSum2 = 0;
         long startTime2 = System.currentTimeMillis();
@@ -351,7 +351,7 @@ public class Sorts {
         //System.out.println(sorts.interpolationSearch(b, 5));
         //System.out.println(sorts.linealSearch(b, 5));
         
-        System.out.println(" tiempo que demora countingSort y binarySearch: " + totalSum2);
+        System.out.println("Tiempo que tarda countingSort y binarySearch: " + totalSum2);
     }
     
 }
