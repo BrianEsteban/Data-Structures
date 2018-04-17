@@ -217,6 +217,7 @@ public class Sorts {
      * @param x
      * @return posicion del arreglo en donde se encuentra x, si no está -1.
      */
+    
     public int binarySearch(int sorted[], int x)
     {
         int lowerBound = 0;
@@ -321,7 +322,7 @@ public class Sorts {
      */
            
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
+        //
         Sorts sorts = new Sorts();
         long totalSum = 0;
         long startTime = System.currentTimeMillis();
@@ -350,7 +351,7 @@ public class Sorts {
         //System.out.println(sorts.interpolationSearch(b, 5));
         //System.out.println(sorts.linealSearch(b, 5));
         
-        System.out.println("Tiempo que demora countingSort y binarySearch: " + totalSum2);
+        System.out.println(" tiempo que demora countingSort y binarySearch: " + totalSum2);
     }
     
 }
