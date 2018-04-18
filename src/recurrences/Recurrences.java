@@ -4,7 +4,7 @@ import java.io.*;
 
 /**
  * El ejercicio consiste en trabajar ciertas operaciones con metodos recursivos que en varios casos resulta siendo 
- * la opcion mas eficaz comparandola con la manera iterativa. Todos las funciones a continuacion tienen recursion.
+ * la opción mas eficaz comparándola con la manera iterativa. Todos las funciones a continuacion tienen recursión.
  * @author Brian Esteban Barreto Cardozo
  */
 public class Recurrences {
@@ -23,8 +23,8 @@ public class Recurrences {
     }
     
     /**
-     * Metodo con el que se obtiene el numero final de la serie fibonacci del numero dado. Si se toma el cero, su serie fibonacci
-     * es cero, si es uno su serie fibonacci es uno, si es dos el ultimo digito de su serie fibonacci es tambien uno.
+     * Método con el que se obtiene el numero final de la serie fibonacci del numero dado. Si se toma el cero, su serie fibonacci
+     * es cero, si es uno su serie fibonacci es uno, si es dos el ultimo dígito de su serie fibonacci es tambien uno.
      * @param n
      * @return el ultimo numero de la serie fibonacci de n
      */
@@ -39,7 +39,7 @@ public class Recurrences {
     }
     
     /**
-     * La operacion que se realiza es sumar 'a' tantas veces como diga 'b', manera como tambien interpretar una multiplicacion.
+     * La operación que se realiza es sumar 'a' tantas veces como diga 'b', manera como tambien interpretar una multiplicación.
      * @param a
      * @param b
      * @return la multiplicacion entre a y b
@@ -55,8 +55,8 @@ public class Recurrences {
     }
     
     /**
-     * Realiza el proceso logico del triangulo de pascal retornando un numero segun su n y k, si k=0 retorna 1 por ser la primera
-     * columna o si n=k por tratarse de la diagonal principal. En otro caso hace la recursion.
+     * Realiza el proceso lógico del trióngulo de pascal retornando un numero segín su n y k, si k=0 retorna 1 por ser la primera
+     * columna o si n=k por tratarse de la diagonal principal. En otro caso hace la recursión.
      * @param n
      * @param k
      * @return el numero correspondiente siguiendo las instrucciones del triangulo de pascal
@@ -70,8 +70,8 @@ public class Recurrences {
     }
     
     /**
-     * usando el metodo pascal se obtiene el triangulo con 10 filas y 10 columnas porque asi es definido en los ciclos de i y j.
-     * @return el triangulo de pascal (10 filas, 10 columnas)
+     * usando el método pascal se obtiene el triángulo con 10 filas y 10 columnas porque así es definido en los ciclos de i y j.
+     * @return el triángulo de pascal (10 filas, 10 columnas)
      */
     public String print_pascal()
     {
@@ -86,31 +86,44 @@ public class Recurrences {
     }
     
     /**
-     * 
+     * Recibe una cadena de caracteres los cuales va a retornar de manera inversa, la recursión tiene su fin en el momento
+     * que la cadena contenga un solo caracter.
      * @param s 
+     * @return la cadena de caracteres invertida
      */
-    public void printInv(String s)
+    public String printInv(String s)
     {
-        if (s.length() == 1) 
-            System.out.print(s);
-        else{
+        String inversa = "";
+        if (s.length() == 1){ 
+            return inversa + s;
+        }
+        else
+        {
             printInv(s.substring(1));
-            System.out.print(s.charAt(0));
+            return inversa + s.charAt(0); 
         }
     }
     
+    
     /**
-     * 
+     * máximo común divisor usando el algoritmo de euclides, teniendo dos numeros, 'a' mayor que 'b', se efectúa la división, si su residuo
+     * no es cero, se efectúa una nueva division ahora tomando a 'b' como divisor y al residuo de la división anterior como dividendo,
+     * esto se repite hasta que el residuo de cero.
      * @param a
      * @param b
-     * @return 
+     * @return el dividendo de la ultima division que debera tener residuo cero
      */
     public int mcd_euclides(int a, int b)
     {
-	return 0;
+        if(a%b == 0)
+            return b;
+        else
+            return mcd_euclides(b, a%b);
     }
 
     /**
+     * Se prueban cada una de las funciones con el buffer y teniendo en cuenta que no son métodos estáticos
+     * se llaman por medio del objeto 'recurrencias' que se creó con esta finalidad.
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException 
@@ -121,8 +134,10 @@ public class Recurrences {
         bw.write(recurrencias.factorial(15) + "\n");
         bw.write(recurrencias.fibonacci(25) + "\n");
         bw.write(recurrencias.multiplicar(654, 97) + "\n");
+        bw.write(recurrencias.mcd_euclides(1032, 180) + "\n");
+        bw.write(recurrencias.printInv("abcd") + "\n");
         bw.write(recurrencias.print_pascal() + "\n");
-        
+
         bw.flush();
         bw.close();        
     }
