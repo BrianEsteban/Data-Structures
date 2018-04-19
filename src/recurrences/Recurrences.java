@@ -91,16 +91,14 @@ public class Recurrences {
      * @param s 
      * @return la cadena de caracteres invertida
      */
-    public String printInv(String s)
+    public static void printInv(String s)
     {
-        String inversa = "";
-        if (s.length() == 1){ 
-            return inversa + s;
-        }
+        if (s.length() == 1)
+            System.out.print(s);
         else
         {
             printInv(s.substring(1));
-            return inversa + s.charAt(0); 
+            System.out.print(s.charAt(0));
         }
     }
     
@@ -131,11 +129,12 @@ public class Recurrences {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter( System.out ));
 	Recurrences recurrencias = new Recurrences();
      
+        printInv("abcd");
+        bw.write("\n");
         bw.write(recurrencias.factorial(15) + "\n");
         bw.write(recurrencias.fibonacci(25) + "\n");
         bw.write(recurrencias.multiplicar(654, 97) + "\n");
         bw.write(recurrencias.mcd_euclides(1032, 180) + "\n");
-        bw.write(recurrencias.printInv("abcd") + "\n");
         bw.write(recurrencias.print_pascal() + "\n");
 
         bw.flush();
