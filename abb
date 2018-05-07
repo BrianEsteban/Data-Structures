@@ -1,0 +1,201 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package abb;
+
+/**
+ *
+ * @author Estudiante
+ */
+public class Abb {
+    Node rigth = null;
+    Node left = null;
+
+    public Node root;
+          
+    public void abb()
+    {
+        Node root = new Node();
+    }
+    
+    public void insert(int value)
+    {
+        Node node = new Node(value);
+        
+        if (root == null) 
+            root = node;
+        else
+        {
+            Node temp = root;
+            Node parent = null;
+            boolean left = false;
+            while(temp != null)
+            {
+                parent = temp;
+                if (value < temp.value)
+                {
+                    temp = temp.left;
+                    left = true;
+                }
+                else
+                {
+                    temp = temp.rigth;
+                    left = false;
+                }
+            }
+            temp = node;
+            if (left) 
+                parent.left = temp;
+            else
+                parent.rigth = temp;
+            
+        }   
+    }
+    
+    public void print_inorder(Node node)
+    {
+        if (node != null) {
+            print_inorder(node.left);
+            System.out.println(node);
+            print_inorder(node.rigth);
+        }    
+    }
+    
+    public void print_postorder(Node node)
+    {
+        if (node != null) {
+            print_postorder(node.left);
+            print_postorder(node.rigth);
+            System.out.println(node);
+        }    
+    }
+    
+    public void print_preorder(Node node)
+    {
+        if (node != null) {
+            System.out.println(node);
+            print_preorder(node.left);
+            print_preorder(node.rigth);
+        }    
+    }
+    
+    public void delete(int value)
+    {
+        Node temp = search(value);
+        if (temp == root) {
+            
+        }
+    }
+    
+    public int offspring(Node node){
+        return (node.left != null) ? (node.rigth != null ? 2 : 1) : (node.rigth != null ? 1 : 0);
+    }
+            
+    
+    public Node search(int value)
+    {
+        Node temp = root;
+        Node parent = root;
+        boolean left = false;
+        
+        while(temp != null)
+        {
+            if (temp.value == value) {
+                break;
+            }else
+                parent = temp;
+                
+                if (value < temp.value){
+                   temp = temp.left; 
+                   left = true;
+                   //parent.left = temp;
+                }
+                else{
+                   temp = temp.rigth;
+                   left = true;
+                }
+        }
+        
+        if (temp != null) {
+            int counter = this.offspring(temp);
+            if (counter == 0) {
+                if (left) 
+                    parent.left = null;
+                else
+                    parent.rigth = null;
+            }else
+            {
+                if (counter == 1) {
+                    if (temp.left != null) {
+                        if (left) 
+                            parent.left = temp.left;
+                        else
+                            parent.rigth = temp.rigth;
+                    }
+                    else
+                    {
+                        if (left) 
+                           parent.left = temp.left;
+                        else
+                            parent.rigth = temp.rigth;
+                    }
+                }
+                else
+                {
+                    if (counter == 2) {              //menor de los mayores desde el nodo a eliminar
+                        Node less = temp.rigth;     //en el peor de los casos tomará este
+                        Node less_parent = less;
+                        
+                        while(less.left != null)
+                        {
+                            less_parent = less;
+                            less = less.left;
+                        }
+                        
+                        if (less.rigth != null) 
+                            less_parent.left = less.rigth;
+                        
+                        less.rigth = temp.rigth;
+                        less.left = temp.left;
+                        
+                        if (left) 
+                            parent.left = less;
+                        else
+                            parent.rigth = less;    
+                        
+                        less = parent.left;
+                        less = parent.rigth;    
+                        rigth = parent.left;      
+                    }
+                }     
+            }
+        }
+   
+        return temp;
+    }
+    
+    
+    public static void main(String[] args) {
+        Abb binaryTree = new Abb();
+        binaryTree.insert(82);
+        binaryTree.insert(85);
+        binaryTree.insert(55);
+        binaryTree.insert(36);
+        binaryTree.insert(76);
+        binaryTree.insert(2);
+        binaryTree.insert(81);
+        System.out.println("Inorder:");
+        binaryTree.print_inorder(binaryTree.root);
+        System.out.println("Posorder:");
+        binaryTree.print_postorder(binaryTree.root);
+        System.out.println("Preorder:");
+        binaryTree.print_preorder(binaryTree.root);
+        System.out.println("Search");
+        System.out.println(binaryTree.search(85));
+    }
+
+    
+    
+}
